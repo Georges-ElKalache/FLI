@@ -1,0 +1,18 @@
+{
+    "configurations": [
+      {
+        "name": "Windows",
+        "includePath": [
+          "${workspaceFolder}/**",
+          "C:/U/Admin/Downloads/boost_1_82_0.zip"  // Replace with the actual path to your Boost library folder
+        ],
+        "defines": [],
+        "compilerPath": "/usr/bin/gcc",  // Replace with the path to your C++ compiler
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "gcc-x64"
+      }
+    ],
+    "version": 4
+  }
+  

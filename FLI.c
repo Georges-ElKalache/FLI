@@ -53,8 +53,8 @@ int differential_equation(double t, const double z[], double dzdt[], void* param
 }
 
 int main(){
-    
 
+    
     clock_t start_time, end_time;
     double execution_time;
     start_time = clock();
@@ -65,14 +65,8 @@ int main(){
     int N = 4 ;     // Nombre d'aimants
     double h = 0.5;   // rayon des aimants 
     double d = sqrt(2);      // Distance des aimants à l'origine
-    double R[N][2]; // Position des aimants
     int T = 20; //Temps d'arrêt
-
-    for(int i = 0; i<N; i++){
-        R[i][0]=cos(i*1.6)*d;
-        R[i][1]=sin(i*1.6)*d;
-    }
-
+    
     int K  = 10; // nombre de pas de discrétisation de la carte
     int x_min  = 0;
     int y_min  = 0;
@@ -92,7 +86,7 @@ int main(){
         Val_x[i] = x_min + delta_x * i ;
     }  
 
-    
+
     for (int i=0; i<K; i++){
         double y = Val_y[i];
         
@@ -102,19 +96,22 @@ int main(){
             double t = 0;
             double t_end = 40;
 
+
             gsl_odeiv2_system sys = {differential_equation, NULL, 8, NULL};
-            gsl_odeiv2_driver* driver = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rk8pd, 1e-3, 1e-3, 0.0);
+            gsl_odeiv2_driver* driver = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rkf45, 1e-3, 1e-3, 0.0);
             
             for (int s = 1; s <= 40; s++){
-
-                int status = gsl_odeiv2_driver_apply (driver, &t, t_end, z);
-
+                int t1 = 100;
+                printf("wslt la hon 1\n");
+                double ti = s * t1 / 100.0;
+                int status = gsl_odeiv2_driver_apply (driver, &t, ti, z);
+                printf("bas mesh la hon\n");
                 if (status != GSL_SUCCESS){
                     printf ("error, return value=%d\n", status);
                     break;
                     }
 
-                fprintf (file, "%.5e %.5e %.5e %.5e %.5e %.5e %.5e %.5e %.5e\n", t, z[0], z[1], z[2], z[3], z[4], z[5], z[6], z[7]);
+                printf ("%f %f %f %f %f %f %f %f %f\n", t, z[0], z[1], z[2], z[3], z[4], z[5], z[6], z[7]);
             }
             gsl_odeiv2_driver_free (driver);
         }
