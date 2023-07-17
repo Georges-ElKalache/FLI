@@ -4,7 +4,7 @@
 
 #define N 4
 #define T 20
-#define K 15
+#define K 10
 
 double h, R[N][2], eps[N];
 
@@ -13,7 +13,7 @@ void fz(double t, double z[], double dzdt[]) {
     double a = 0, b = 0, A = -1, B = 0, C = -1;
     
     for (i = 0; i < N; i++) {
-        double dn = pow(R[i][0] - z[0], 2) + pow(R[i][1] - z[1], 2) + pow(h, 2);
+        double dn = pow(R[i][0] - z[0], 2) + pow(R[i][1] - z[1], 2) + 0.025;
         a += eps[i] * (R[i][0] - z[0]) / pow(dn, 2.5);
         b += eps[i] * (R[i][1] - z[1]) / pow(dn, 2.5);
         A -= eps[i] * (pow(h, 2) - 4 * pow(R[i][0] - z[0], 2) + pow(R[i][1] - z[1], 2)) / pow(dn, 3.5);
@@ -73,21 +73,21 @@ int main() {
     // Start the clock
     start_time = clock();
 
-    FILE* file =  fopen("result_chat", "w");
+    FILE* file =  fopen("result_chat_1", "w");
 
     int i, j;
     double W0[4] = {0.5, 0.5, 0.5, 0.5};
-    double x_min = 0, y_min = 0, x_max = 2, y_max = 2;
-    double delta_y = (y_max - y_min) / K;
-    double delta_x = (x_max - x_min) / K;
+    double x_min = 0, y_min = 0;
+    double delta_y = 0.2;
+    double delta_x = 0.2;
     double CarteFLI[K+1][K+1];
     double Val_y[K+1], Val_x[K+1];
 
     h = 0.5;
     double d = sqrt(2);
     for (i = 0; i < N; i++) {
-        R[i][0] = cos(i * 2 * M_PI / N + M_PI / 4) * d;
-        R[i][1] = sin(i * 2 * M_PI / N + M_PI / 4) * d;
+        R[i][0] = cos(i * 1.6) * d;
+        R[i][1] = sin(i * 1.6) * d;
         eps[i] = 1;
     }
 
@@ -106,7 +106,9 @@ int main() {
             double tspan[2] = {0, T};
             double t[T], Z[T][8];
             ode23s(fz, tspan, Z0, T, t, Z);
-
+            for(int q = 0; q<T; q++){
+                fprintf (file,"%f %f %f %f %f %f %f %f %f\n", t, Z[q][0], Z[q][1], Z[q][2], Z[q][3], Z[q][4], Z[q][5], Z[q][6], Z[][7]);
+            }
             double NW[4], FLI;
             for (int k = 0; k < T; k++) {
                 for (int l = 0; l < 4; l++)
@@ -118,7 +120,7 @@ int main() {
             
             }
             //fprintf(file, " pour x = %f, y = %f => FLI = %f \n", x, Val_y[i], FLI);
-            fprintf(file, " %f \n", FLI);
+            //fprintf(file, " %f \n", FLI);
         }
     }
 
