@@ -1,18 +1,26 @@
 {
-    "configurations": [
-      {
-        "name": "Windows",
-        "includePath": [
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/Users/Admin/Desktop/boost_1_82_0/stage/lib"
+      ],
+      "defines": [],
+      "windowsSdkVersion": "10.0.19041.0",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "gcc-x64",
+      "browse": {
+        "path": [
           "${workspaceFolder}/**",
-          "C:/U/Admin/Downloads/boost_1_82_0.zip"  // Replace with the actual path to your Boost library folder
+          "C:/Users/Admin/Desktop/boost_1_82_0/stage/lib"
         ],
-        "defines": [],
-        "compilerPath": "/usr/bin/gcc",  // Replace with the path to your C++ compiler
-        "cStandard": "c11",
-        "cppStandard": "c++17",
-        "intelliSenseMode": "gcc-x64"
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
       }
-    ],
-    "version": 4
-  }
-  
+    }
+  ],
+  "version": 4
+}

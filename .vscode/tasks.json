@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "Build with Boost",
+		"type": "shell",
+		"command": "g++",
+		"args": [
+		  "-std=c++11",
+		  "-I",
+		  "${workspaceFolder}",
+		  "-I",
+		  "C:/Users/Admin/Desktop/boost_1_82_0",  // Replace with the actual path to your Boost library folder
+		  "-L",
+		  "C:/Users/Admin/Desktop/boost_1_82_0/stage/lib",  // Replace with the actual path to your Boost library folder
+		  "-lboost_numeric_odeint",   // Replace "XXX" with the Boost library you need
+		  "${file}",
+		  "-o",
+		  "${fileDirname}/${fileBasenameNoExtension}"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		}
+	  }
+	]
+  }
+  
