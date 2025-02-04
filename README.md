@@ -1,7 +1,7 @@
 # FLI
 
 ## Overview
-**FLI (Fast Lyapunov Indicator)** is a C++ program that models the dynamics of the Magnetic Pendulum, considering gravitational, magnetic, and frictional forces. It computes the Fast Lyapunov Indicator on the system in an attempt to quantify sensitivity to initial conditions and chaotic behavior. FLI is a numerical technique used to study chaos in dynamical systems.
+**FLI** is a C++ program that models the dynamics of the Magnetic Pendulum, considering gravitational, magnetic, and frictional forces. It computes the **Fast Lyapunov Indicator** on the system in an attempt to quantify sensitivity to initial conditions and chaotic behavior. FLI is a numerical technique used to study chaos in dynamical systems.
 ## Features
 - Implements the Runge-Kutta Cash-Karp method for numerical integration  
 - Uses Boost ODEInt library for solving differential equations  
